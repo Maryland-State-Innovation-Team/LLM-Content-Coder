@@ -102,13 +102,12 @@ def createFormattedPromptContents(value, classes, model, multi):
 
 
 def geminiClassify(client, model, value, classes, multi, structuredOutputClass):
-    sleep(4) # Free tier rate limit of 15 per minute
     formattedPromptContents = createFormattedPromptContents(value, classes, model, multi)
     max_retries = 3
     for attempt in range(max_retries):
         try:
             response = client.models.generate_content(
-                model='gemini-2.0-flash',
+                model='gemini-2.5-flash',
                 contents=formattedPromptContents,
                 config={
                     'response_mime_type': 'application/json',
